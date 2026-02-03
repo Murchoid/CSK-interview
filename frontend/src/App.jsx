@@ -23,12 +23,42 @@ function App() {
     fetchAnnouncements()
   }, [])
 
-  const handleAction = (id) => {
-    alert(`Action clicked for announcement: ${id}`)
-  }
+  // const handleAction = (id) => {
+  //   alert(`Action clicked for announcement: ${id}`)
+  // }
 
   return (
-  //  Your UI here
+    
+    // <div className=''>
+    //   {
+    //     announcements.map((ann) => {
+    //       <div key={ann.title}>
+    //         <h1>{ann.title}</h1>
+    //         <p>{ann.description}</p>
+    //         <div>
+    //           <p>{ ann.date }</p>
+    //           <button>Book Event</button>
+    //         </div>
+    //       </div>
+    //     })
+    //   }
+    // </div>
+    <>
+      
+      <section className='bg-slate-200 min-h-screen p-4 '>
+        <div className='grid grid-cols-[repeat(auto-fill,minmax(300px,))]'>
+          <div className='bg-white rounded shadow p-4 '>
+            <h1>Lorem ipsum dolor sit amet.</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quo qui consequuntur veniam. Ad, nam.</p>
+            <div>
+              <p>3/2/2024</p>
+              <button>Book Event</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </>
    
   )
 }

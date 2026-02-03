@@ -3,7 +3,7 @@ import {
   getAnnouncements as getAllAnnouncements,
   getAnnouncementById,
   deleteAnnouncement as removeAnnouncement,
-} from '../models/announcements.model.js';
+} from './announcements.model.js';
 
 export const createAnnouncement = (req, res) => {
   try {
