@@ -3,29 +3,38 @@ import {
   getAnnouncements as getAllAnnouncements,
   getAnnouncementById,
   deleteAnnouncement as removeAnnouncement,
-} from './announcements.model.js';
+} from '../models/announcements.model.js';
 
-export const createAnnouncement = (req, res) => {
+export const createAnnouncement = async(req, res) => {
   try {
-    const { title, message } = req.body;
+    const { title, description, path, text } = req.body;
 
-    if (!title || !message) {
+    if (!title || !description || !path || !text) {
       return res.status(400).json({
-        error: 'Title and message are required',
+        error: 'All fields are required',
       });
     }
 
-    const announcement = addAnnouncement(title, message);
-    res.status(201).json(announcement);
+    const announcement = {
+      id:crypto.randomUUID(),
+      title,
+      description,
+      link: {
+        path, text
+      },
+      createdAt: new Date().toLocaleDateString()
+    }
+    const result = await addAnnouncement(announcement);
+    res.status(201).json({message:result.message,announcement});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-export const getAnnouncements = (req, res) => {
+export const getAnnouncements = async(req, res) => {
   try {
-    const announcements = getAllAnnouncements();
-    res.json(announcements);
+    const result = await getAllAnnouncements();
+    res.json({message: result.message, announcements:result?.announcements});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
